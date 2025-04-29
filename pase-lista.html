@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pase de Lista · Asistencia QR</title>
+  
+    <!-- favicon básico -->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+<!-- (opcional) versión PNG para navegadores modernos -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <!-- Iconos y estilos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pase-lista.css" />
+  <!-- Librerías -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+  <!-- Menú -->
+  <script src="menu.js" defer></script>
+  <!-- Lógica -->
+  <script src="pase-lista.js" defer></script>
+</head>
+<body>
+  <!-- sidebar/header inyectados -->
+
+  <main class="content protected">
+    <section class="qr-section">
+      <h1>Pase de Lista QR</h1>
+
+      <div class="loc-voice-container">
+        <div id="loc-status" class="loc-status">Cargando ubicación…</div>
+        <button id="mute-btn" class="mute-btn">
+          <i class="fas fa-volume-up"></i> Silenciar
+        </button>
+      </div>
+
+      <div class="qr-container">
+        <div id="qr-reader"></div>
+        <div id="qr-overlay"></div>
+        <!-- Fallback: input de archivo que abre la cámara en móviles -->
+        <input type="file" id="file-input" accept="image/*" capture="environment"
+               style="display:none;margin-top:1rem;" />
+        <button id="use-file-btn" style="display:none;margin-top:1rem;">
+          <i class="fas fa-image"></i> Escanear desde imagen
+        </button>
+      </div>
+
+      <div class="controls">
+        <button id="toggle-scan"><i class="fas fa-stopwatch"></i> Detener Escaneo</button>
+        <button id="verify-loc"><i class="fas fa-map-marker-alt"></i> Verificar Ubicación</button>
+        <button id="export-excel"><i class="fas fa-file-excel"></i> Exportar Excel</button>
+        <button id="send-data"><i class="fas fa-paper-plane"></i> Enviar Datos</button>
+      </div>
+
+      <ul id="attendance-list"></ul>
+
+      <div class="teacher-qr" id="teacher-qr"></div>
+      <div id="notification" class="notification"></div>
+    </section>
+  </main>
+</body>
+</html>

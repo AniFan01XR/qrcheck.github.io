@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestión de Horarios · Asistencia QR</title>
+  <!-- favicon básico -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!-- (opcional) versión PNG para navegadores modernos -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="gestionhorarios.css"/>
+
+  <script src="menu.js" defer></script>
+  <script src="gestionhorarios.js" defer></script>
+</head>
+<body>
+  <!-- sidebar + header los inyecta menu.js -->
+
+  <main class="content protected">
+    <section class="schedule-section card">
+      <h1>Gestión de Horarios</h1>
+
+      <!-- ░░ Formulario Alta / Edición ░░ -->
+      <form id="class-form" class="class-form" autocomplete="off">
+        <h2 id="form-title">Añadir Clase</h2>
+
+        <div class="row2">
+          <label>Materia *</label>
+          <input id="subject" required />
+        </div>
+
+        <!-- DÍAS: ahora cada label contiene el input y un <span> que mostraremos -->
+          <div class="row2">
+             <label>Días *</label>
+                <div class="day-group" id="day-group">
+                    <label><input type="checkbox" value="L"><span>Lun</span></label>
+                    <label><input type="checkbox" value="M"><span>Mar</span></label>
+                    <label><input type="checkbox" value="Mi"><span>Mié</span></label>
+                    <label><input type="checkbox" value="J"><span>Jue</span></label>
+                    <label><input type="checkbox" value="V"><span>Vie</span></label>
+                    <label><input type="checkbox" value="S"><span>Sáb</span></label>
+          </div>
+        </div>
+
+
+        <div class="row2">
+          <label>Hora inicio *</label>
+          <input type="time" id="start" required />
+        </div>
+        <div class="row2">
+          <label>Hora fin *</label>
+          <input type="time" id="end" required />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="save-btn"><i class="fas fa-save"></i> Guardar</button>
+          <button type="button" id="cancel-btn" class="secondary" style="display:none;"><i class="fas fa-times"></i> Cancelar</button>
+        </div>
+      </form>
+
+      <!-- ░░ Tabla Horarios ░░ -->
+      <table class="schedule-table" id="schedule-table">
+        <thead>
+          <tr>
+            <th>Materia</th><th>Días</th><th>Horario</th><th>Horas/sem</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id="notification" class="notification"></div>
+    </section>
+  </main>
+</body>
+</html>
