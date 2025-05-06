@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ayuda · Asistencia QR</title>
+  <!-- favicon básico -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!-- (opcional) versión PNG para navegadores modernos -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <!-- Font Awesome + estilos globales -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos específicos de la página de soporte -->
+  <link rel="stylesheet" href="soporte.css" />
+
+  <!-- Menú / header inyectados y lógica de tickets -->
+  <script src="menu.js" defer></script>
+  <script src="soporte.js" defer></script>
+</head>
+<script src="click-sound.js" defer></script>
+
+<body>
+  <!-- sidebar y header los insertará menu.js -->
+
+  <main class="content protected">
+    <!-- La clase card reaprovecha el estilo de tarjetas globales -->
+    <section class="support-section card">
+      <h1>Centro de Ayuda / Soporte</h1>
+
+      <!-- ░░ Preguntas frecuentes ░░ -->
+      <details class="faq">
+        <summary><i class="fas fa-question-circle"></i> ¿Cómo escaneo mi QR?</summary>
+        <p>Entra a “Pase de Lista”, apunta la cámara al código y espera la confirmación.</p>
+      </details>
+
+      <details class="faq">
+        <summary><i class="fas fa-question-circle"></i> No se activa la cámara</summary>
+        <p>Verifica los permisos del navegador o utiliza el botón “Escanear imagen”.</p>
+      </details>
+
+      <details class="faq">
+        <summary><i class="fas fa-question-circle"></i> ¿Cómo exporto a Excel?</summary>
+        <p>En “Pase de Lista” presiona <b>Exportar Excel</b>. Descargará <code>asistencias.xlsx</code>.</p>
+      </details>
+
+      <!-- ░░ Formulario de ticket ░░ -->
+      <form id="ticket-form" class="ticket-form" autocomplete="off">
+        <h2>Crear ticket</h2>
+
+        <label>Asunto *</label>
+        <input id="subj" required />
+
+        <label>Descripción *</label>
+        <textarea id="msg" rows="5" required></textarea>
+
+        <button type="submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+      </form>
+
+      <!-- notificación toast -->
+      <div id="notification" class="notification"></div>
+    </section>
+  </main>
+</body>
+</html>

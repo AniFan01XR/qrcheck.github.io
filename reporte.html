@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generar Reporte · Asistencia QR</title>
+
+  <!-- Iconos + estilos globales -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="reporte.css" />
+
+  <!-- Menú lateral -->
+  <script src="menu.js" defer></script>
+  <!-- Librería Excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+  <script src="reporte.js" defer></script>
+</head>
+<script src="click-sound.js" defer></script>
+
+<body>
+  <!-- sidebar + header llegan desde menu.js -->
+
+  <main class="content protected">
+    <section class="report-section card">
+      <h1>Reporte de Asistencia</h1>
+      <p class="warning">
+        ⚠️ Función en proceso de creación — puede presentar múltiples fallos.
+      </p>
+
+      <div class="toolbar">
+        <button id="export-btn">
+          <i class="fas fa-file-excel"></i> Exportar a Excel
+        </button>
+      </div>
+
+      <table id="report-table">
+        <thead>
+          <tr>
+            <th>N° Control</th>
+            <th>Nombre Completo</th>
+            <th>% Asistencia</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody><!-- filas dinámicas --></tbody>
+      </table>
+
+      <div id="notification" class="notification"></div>
+    </section>
+  </main>
+</body>
+</html>

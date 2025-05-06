@@ -1,0 +1,101 @@
+/*────────── contenedor global ──────────*/
+.calendar-section.card{
+    max-width:1100px;
+    margin:2rem auto;
+  }
+  
+  /*────────── 1. zona imagen + tabla ──────────*/
+  .upload-area{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    align-items:flex-start;
+    margin-bottom:1.5rem;
+  }
+  @media(max-width:700px){
+    .upload-area{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+  }
+  
+  /* botón subir */
+  .upload-btn{
+    background:var(--primary);
+    color:#fff;
+    padding:.6rem 1.2rem;
+    border:none;
+    border-radius:var(--radius);
+    cursor:pointer;
+    display:inline-flex;
+    gap:.5rem;
+    align-items:center;
+    transition:background var(--transition);
+  }
+  .upload-btn:hover{background:var(--primary-dark)}
+  
+  /* preview HD */
+  .preview{
+    width:100%;
+    max-width:480px;
+    height:auto;
+    border-radius:.5rem;
+    cursor:crosshair;
+  }
+  
+  /* tabla eventos */
+  .events-area{overflow-x:auto;width:100%}
+  #events-table{width:100%;border-collapse:collapse;font-size:.95rem}
+  #events-table thead{background:#eef3fb}
+  :root.dark #events-table thead{background:#333}
+  #events-table th,#events-table td{
+    padding:.5rem;border:1px solid #ddd;text-align:center
+  }
+  :root.dark #events-table td{border-color:#555}
+  #events-table td:first-child{width:60px}
+  
+  .color-box{
+    width:28px;height:18px;border-radius:.3rem;border:1px solid #999;margin:auto
+  }
+  .delete-btn{
+    background:none;border:none;color:#e8504c;cursor:pointer;font-size:1rem
+  }
+  .delete-btn:hover{color:#ff6b5f}
+  
+  /*────────── 2. botón generar ──────────*/
+  .center{display:flex;justify-content:center;margin:1.5rem 0}
+  #generate-btn{
+    background:var(--primary);color:#fff;border:none;
+    padding:.6rem 1.5rem;border-radius:.5rem;cursor:pointer;
+    transition:background var(--transition),transform .2s;
+  }
+  #generate-btn:hover{background:var(--primary-dark);transform:translateY(-2px)}
+  
+  /*────────── 3. mini-calendar demo ──────────*/
+  .html-calendar{margin-top:2rem;width:100%;text-align:center}
+  .mini-cal{margin:auto;border-collapse:collapse}
+  .mini-cal th,.mini-cal td{
+    padding:.35rem;border:1px solid #ccc;width:32px;height:32px;text-align:center
+  }
+  :root.dark .mini-cal th,:root.dark .mini-cal td{border-color:#555}
+  .mini-cal th{background:var(--primary);color:#fff}
+  :root.dark .mini-cal th{background:var(--primary-dark)}
+  
+  /*────────── 4. lupa y caja OCR ──────────*/
+  #loupe{
+    position:absolute;
+    pointer-events:none;
+    border:1px solid #000;
+    width:90px;height:90px;
+    image-rendering:pixelated;
+    display:none;
+    z-index:1200;
+  }
+  .ocr-box{
+    position:absolute;
+    border:2px dashed var(--primary);
+    pointer-events:none;
+    z-index:1100;
+  }
+  

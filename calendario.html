@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calendario Escolar · Asistencia QR</title>
+  <!-- favicon básico -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <!-- (opcional) versión PNG para navegadores modernos -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <!-- iconos + estilos globales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="calendario.css"/>
+
+  <!-- menú lateral -->
+  <script src="menu.js" defer></script>
+
+  <!-- OCR offline -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2/dist/tesseract.min.js" defer></script>
+  <script src="calendario.js" defer></script>
+</head>
+<script src="click-sound.js" defer></script>
+<body>
+  <main class="content protected">
+    <section class="calendar-section card">
+      <h1>Calendario Escolar</h1>
+
+      <!-- █ 1. imagen (izq) + tabla (dcha) -->
+      <div class="upload-area">
+        <label class="upload-btn">
+          <input type="file" id="img-input" accept="image/*" hidden>
+          <i class="fas fa-upload"></i> Subir Imagen
+        </label>
+
+        <!-- preview HD -->
+        <img id="preview-img" class="preview" alt="previsualización"/>
+
+        <!-- canvas oculto para muestrear -->
+        <canvas id="hidden-canvas" style="display:none"></canvas>
+
+        <!-- tabla -->
+        <div class="events-area">
+          <h2>Eventos detectados</h2>
+          <table id="events-table">
+            <thead>
+              <tr>
+                <th>Color</th><th>Descripción</th><th>Días detectados</th><th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- █ 2. generar calendario -->
+      <div class="center">
+        <button id="generate-btn">
+          <i class="fas fa-calendar-plus"></i> Generar / Mostrar calendario
+        </button>
+      </div>
+
+      <!-- █ 3. calendario HTML -->
+      <div id="html-calendar" class="html-calendar" style="display:none"></div>
+
+      <div id="notification" class="notification"></div>
+    </section>
+  </main>
+</body>
+</html>

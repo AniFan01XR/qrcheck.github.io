@@ -1,0 +1,113 @@
+.send-section.card{
+    max-width:700px;margin:2rem auto;text-align:center;
+  }
+  
+  /* ███  INCOMING BANNER  ███ */
+  .soon-banner{
+    background:#ff4242;color:#fff;padding:.45rem 1.2rem;
+    border-radius:.45rem;font-weight:600;margin-bottom:1rem;
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  
+  /* ███  BOTÓN  ███ */
+  #send-btn{
+    background:var(--primary);color:#fff;border:none;
+    padding:.8rem 1.9rem;font-size:1.18rem;border-radius:.6rem;
+    cursor:pointer;transition:background .25s,transform .2s;
+  }
+  #send-btn:hover{background:var(--primary-dark);transform:translateY(-3px)}
+  
+  /* ███  ANIMACIÓN  ███ */
+  .anim-wrapper{
+    position:relative;width:100%;height:180px;margin-top:2.4rem;
+    visibility:hidden;overflow:hidden;
+  }
+  
+  /* avión-misil */
+  .plane{
+    position:absolute;top:42%;left:-60px;font-size:2.8rem;
+    color:#fff;
+    text-shadow:0 0 6px var(--primary);
+    opacity:0;
+  }
+  @keyframes fly{
+    0%  {left:-60px;opacity:0;transform:rotate(-15deg)}
+    5%  {opacity:1}
+    50% {transform:rotate(4deg)}
+    95% {opacity:1}
+    100%{left:calc(100% + 80px);opacity:0;transform:rotate(18deg)}
+  }
+  
+  /* flare — luz trasera */
+  .flare{
+    position:absolute;top:50%;left:-40px;width:28px;height:28px;
+    transform:translateY(-50%);
+    border-radius:50%;
+    background:radial-gradient(circle,#fffdc7 0%,#ff9800 40%,transparent 80%);
+    opacity:0;filter:blur(3px);
+  }
+  @keyframes flare{
+    0%{opacity:0}
+    10%{opacity:.9}
+    90%{opacity:.9}
+    100%{opacity:0}
+  }
+  
+  /* estela  */
+  .trail{
+    position:absolute;top:49%;left:-60px;height:4px;width:100%;
+    background:linear-gradient(90deg,rgba(255,255,255,.6) 0%,transparent 70%);
+    opacity:0;filter:blur(4px);
+  }
+  @keyframes trail{
+    0%{opacity:0}
+    8%{opacity:.6}
+    92%{opacity:.6}
+    100%{opacity:0;left:-100%}
+  }
+  
+  /* chispas */
+  .spark{
+    position:absolute;font-size:.9rem;opacity:0;
+    color:#ffc107;text-shadow:0 0 3px #ffa000;
+    animation:spark 1s linear forwards;
+  }
+  @keyframes spark{
+    0%{opacity:1;transform:translateY(0) scale(1)}
+    100%{opacity:0;transform:translateY(25px) scale(.2)}
+  }
+  
+  /* barra progreso */
+  .progress{position:absolute;bottom:0;left:0;width:100%;height:6px;
+    background:#ccc;border-radius:3px;overflow:hidden}
+  .bar{width:0;height:100%;background:var(--primary);
+    transition:width 3.4s linear}
+  
+  /* confeti */
+  .confetti{
+    position:fixed;left:50%;top:-10px;font-size:1.3rem;
+    animation:fall 2.2s ease-out forwards;
+  }
+  @keyframes fall{to{transform:translateX(-50%) translateY(110vh) rotate(720deg)}}
+  
+  /* flash */
+  .flash{
+    position:fixed;inset:0;background:#fff;opacity:0;
+    animation:flash 0.4s ease-out forwards;
+    pointer-events:none;z-index:1400;
+  }
+  @keyframes flash{0%{opacity:.9}100%{opacity:0}}
+  
+  /* toast */
+  .notification{
+    position:fixed;top:1rem;right:1rem;
+    background:#ff6b00;color:#fff;padding:.9rem 1.5rem;
+    border-radius:.6rem;box-shadow:0 4px 14px rgba(0,0,0,.35);
+    display:none;z-index:1300;animation:shake .6s
+  }
+  @keyframes shake{
+    0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-6px)}
+    50%{transform:translateX(6px)}
+  }
+  
