@@ -1,0 +1,10 @@
+.user-section.card{max-width:800px;margin:2rem auto;text-align:center}
+.u-form{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1.5rem}
+.u-form div{display:flex;flex-direction:column}
+.u-form input,.u-form select{padding:.55rem;border:1px solid #bbb;border-radius:.4rem;background:var(--bg);color:var(--text)}
+.u-form button{background:var(--primary);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:.5rem;cursor:pointer}
+.u-form .secondary{background:#888}
+#uTable{width:100%;border-collapse:collapse}
+#uTable th,#uTable td{padding:.55rem;border-bottom:1px solid #ccc;text-align:center}
+.action-btn{background:none;border:none;color:var(--primary);cursor:pointer}
+.notification{position:fixed;top:1rem;right:1rem;background:var(--primary);color:#fff;padding:.8rem 1.3rem;border-radius:.5rem;display:none}

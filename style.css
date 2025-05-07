@@ -1,108 +1,155 @@
 /*────────────────── 1 ░ VARIABLES LIGHT / DARK ░ ─────────────────*/
 :root{
-  /* tema claro */
   --primary        : #156512;
   --primary-dark   : #3aa050;
   --bg             : #f6f8fb;
   --surface        : #ffffff;
   --text           : #333333;
-  --shadow         : 0 4px 16px rgba(0,0,0,.10);
-  --radius         : .75rem;
-  --transition     : .3s ease;
+  --shadow         : 0 6px 24px rgba(0,0,0,.12);
+  --radius         : .8rem;
+  --transition     : .28s cubic-bezier(.4,.0,.2,1);
+  --sidebar-w      : 280px;            /* ⇠ más ancho */
 }
 :root.dark{
-  /* tema oscuro */
   --primary        : #34c36d;
   --primary-dark   : #27a75b;
   --bg             : #1c1c1c;
   --surface        : #272727;
   --text           : #e5e5e5;
-  --shadow         : 0 4px 16px rgba(0,0,0,.60);
+  --shadow         : 0 6px 24px rgba(0,0,0,.55);
 }
 
 /*────────────────── 2 ░ RESET & BASE ░ ─────────────────*/
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{
-  height:100%;
-  font-family:'Segoe UI',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
+  height:100%;font-family:'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);overflow-x:hidden;
   transition:background var(--transition),color var(--transition);
 }
 
 /*────────────────── 3 ░ HAMBURGER ░ ─────────────────*/
 .hamburger{
-  position:fixed;top:1rem;left:1rem;z-index:1001;
+  position:fixed;top:1rem;left:1rem;z-index:1200;
   background:var(--primary);color:#fff;border:none;
-  padding:.5rem;border-radius:.5rem;cursor:pointer;
-  font-size:1.5rem;transition:background var(--transition);
+  padding:.6rem;border-radius:.6rem;cursor:pointer;
+  font-size:1.45rem;line-height:1;transition:background var(--transition);
 }
 body.sidebar-open .hamburger{background:var(--primary-dark)}
 
 /*────────────────── 4 ░ SIDEBAR ░ ─────────────────*/
 .sidebar{
-  position:fixed;top:0;left:-260px;width:260px;height:100%;
+  position:fixed;top:0;left:calc(var(--sidebar-w)*-1);
+  width:var(--sidebar-w);height:100vh;
   background:var(--surface);box-shadow:var(--shadow);
-  transition:transform var(--transition);z-index:1000;
-  padding-top:3.5rem;
+  transition:transform var(--transition),box-shadow var(--transition);
+  z-index:1100;display:flex;flex-direction:column;
 }
-body.sidebar-open .sidebar{transform:translateX(260px)}
-.sidebar-header{text-align:center;padding-bottom:2rem}
-.sidebar-logo{width:64px;height:64px}
-.sidebar-header h2{margin-top:.5rem;color:var(--primary)}
-.sidebar-menu{list-style:none}
-.sidebar-menu li{margin:.5rem 0}
+body.sidebar-open .sidebar{transform:translateX(var(--sidebar-w))}
+.sidebar-header{
+  text-align:center;padding:2.2rem 1rem 1.8rem;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.sidebar-logo{width:72px;height:72px}
+.sidebar-header h2{margin-top:.6rem;font-size:1.15rem;color:var(--primary)}
+.sidebar-menu{list-style:none;margin-top:.8rem;flex:1;overflow-y:auto}
+
+/* item */
+.sidebar-menu li{
+  margin:.25rem 0;position:relative;
+}
 .sidebar-menu a{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.75rem 1.5rem;color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:.9rem;
+  padding:.85rem 1.6rem;font-size:1rem;font-weight:500;
+  color:var(--text);text-decoration:none;
   transition:background var(--transition),color var(--transition);
-  border-radius:.4rem;
 }
-.sidebar-menu li.active a,
+
+/* indicador activo */
+.sidebar-menu li.active>a,
 .sidebar-menu a:hover{
-  background:var(--primary);
-  color:#fff;
+  color:#fff;background:var(--primary-dark);
 }
+.sidebar-menu li.active::before{
+  content:"";position:absolute;left:0;top:0;height:100%;
+  width:5px;background:var(--primary);border-radius:0 4px 4px 0;
+}
+
+/* scroll estilizado */
+.sidebar-menu::-webkit-scrollbar{width:6px}
+.sidebar-menu::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.2);border-radius:3px}
 
 /*────────────────── 5 ░ HEADER ░ ─────────────────*/
 .header{
-  position:sticky;top:0;background:var(--surface);box-shadow:var(--shadow);
+  position:sticky;top:0;z-index:500;
+  background:var(--surface);box-shadow:var(--shadow);
   display:flex;flex-direction:column;align-items:center;
-  padding:1rem 1.5rem;transition:margin-left var(--transition),background var(--transition);
-  z-index:500;
+  padding:1.1rem 1.6rem;transition:margin-left var(--transition),background var(--transition);
 }
-body.sidebar-open .header{margin-left:260px}
-.header-logo{width:60px;height:60px;margin-bottom:.5rem}
-.header-greeting{font-size:1.2rem;text-align:center}
+body.sidebar-open .header{margin-left:var(--sidebar-w)}
+.header-logo{width:66px;height:66px;margin-bottom:.5rem}
+.header-greeting{font-size:1.25rem;text-align:center}
 
 /*────────────────── 6 ░ WELCOME DASHBOARD ░ ─────────────────*/
 .welcome-dashboard{
-  max-width:900px;margin:2rem auto;padding:0 1rem;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:1.5rem;transition:margin-left var(--transition)
+  max-width:980px;margin:2.2rem auto;padding:0 1.2rem;
+  display:grid;gap:1.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  transition:margin-left var(--transition)
 }
-body.sidebar-open .welcome-dashboard{margin-left:260px}
+body.sidebar-open .welcome-dashboard{margin-left:var(--sidebar-w)}
 .card{
   background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
-  padding:1.5rem;text-align:center;
-  transition:transform .2s,box-shadow .2s,background var(--transition),color var(--transition);
+  padding:1.6rem;text-align:center;
+  transition:transform .2s,box-shadow .2s,background var(--transition);
 }
-.card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
-.card i{font-size:2rem;color:var(--primary);margin-bottom:.75rem;transition:color var(--transition)}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 26px rgba(0,0,0,.15)}
+.card i{font-size:2.2rem;color:var(--primary);margin-bottom:.85rem;transition:color var(--transition)}
 .card a{
-  display:block;margin-top:.5rem;color:var(--text);font-weight:600;text-decoration:none;
-  transition:color var(--transition)
+  display:block;margin-top:.55rem;font-weight:600;font-size:.98rem;
+  color:var(--text);text-decoration:none;transition:color var(--transition)
 }
 .card a:hover{color:var(--primary)}
+:root.dark .card a{color:#d3d3d3}
 
 /*────────────────── 7 ░ NOTIFICATION ░ ─────────────────*/
 .notification{
-  position:fixed;top:1rem;right:1rem;background:var(--primary);color:#fff;
-  padding:.75rem 1.25rem;border-radius:var(--radius);box-shadow:var(--shadow);
-  display:none;z-index:1100;transition:background var(--transition)
+  position:fixed;                   /* quita del flujo */
+  top:1rem;right:1rem;z-index:1300;
+
+  max-width:320px;                  /* ⬅️  nunca se ensancha más   */
+  padding:.8rem 1.3rem;
+  border-radius:var(--radius);
+  background:var(--primary);
+  color:#fff;font-weight:500;
+
+  box-shadow:var(--shadow);
+  display:none;                     /* se muestra por JS */
+  word-wrap:break-word;
+  pointer-events:none;              /* no captura clics */
+  transition:transform .3s ease,opacity .3s ease;
 }
 
+
 /*────────────────── 8 ░ RESPONSIVE ░ ─────────────────*/
-@media (max-width:600px){.welcome-dashboard{grid-template-columns:1fr 1fr}}
-@media (max-width:400px){.welcome-dashboard{grid-template-columns:1fr}}
+@media(max-width:650px){ .welcome-dashboard{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))} }
+@media(max-width:420px){ .welcome-dashboard{grid-template-columns:1fr} }
+
+/*────────────────── 9 ░ SIDEBAR ADAPTATIVO ░ ───────────────*/
+@media(max-width:700px){
+  :root{--sidebar-w:240px;}                 /* sidebar más estrecho */
+  .sidebar{left:-240px}
+  body.sidebar-open .sidebar{transform:translateX(240px)}
+}
+
+/* texto largo → “…” en desktop  | multiparágrafo en móvil */
+.sidebar-menu a{
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(var(--sidebar-w)-70px);
+}
+@media(max-width:700px){
+  .sidebar-menu a{
+    white-space:normal;overflow:visible;text-overflow:unset;max-width:100%;
+    line-height:1.3em;
+  }
+  .sidebar-menu a i{flex:0 0 24px}
+}

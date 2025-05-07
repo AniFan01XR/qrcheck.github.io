@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Usuarios · Asistencia</title>
+    <link rel="stylesheet" href="css/style.css"/><link rel="stylesheet" href="usuarios.css"/>
+    <script src="js/menu.js" defer></script><script type="module" src="js/usuarios.js" defer></script>
+    </head><body>
+    <main class="content protected">
+      <section class="user-section card">
+        <h1>Gestión de Usuarios</h1>
+    
+        <form id="uForm" class="u-form">
+          <input type="hidden" id="uid">
+          <div><label>Usuario</label><input id="uname" required></div>
+          <div><label>Contraseña</label><input id="upass" required></div>
+          <div><label>Rol</label>
+            <select id="urole">
+              <option value="ADMIN">ADMIN</option>
+              <option value="QR_SUPPORT">QR_SUPPORT</option>
+              <option value="PROFESOR">PROFESOR</option>
+            </select></div>
+          <button>Guardar</button>
+          <button type="button" id="cancel" class="secondary" style="display:none">Cancelar</button>
+        </form>
+    
+        <table id="uTable"><thead><tr><th>ID</th><th>Usuario</th><th>Rol</th><th>Acciones</th></tr></thead><tbody></tbody></table>
+        <div id="toast" class="notification"></div>
+      </section>
+    </main>
+    </body></html>
+    

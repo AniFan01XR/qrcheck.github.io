@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Log de QR · Asistencia QR</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="menu.js" defer></script>
+    <script type="module" src="js/logs.js" defer></script>
+    </head><body>
+    <main class="content protected">
+      <section class="card">
+        <h2>Registro de QR escaneados</h2>
+    
+        <label>Profesor:
+          <select id="sel-prof"></select>
+        </label>
+        <label>Desde: <input type="date" id="d1"></label>
+        <label>Hasta: <input type="date" id="d2"></label>
+        <button id="filtrar">Filtrar</button>
+    
+        <table id="tbl" style="margin-top:1rem;width:100%;border-collapse:collapse">
+          <thead><tr><th>Profesor</th><th>Código</th><th>Fecha / Hora</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    </body></html>
+    

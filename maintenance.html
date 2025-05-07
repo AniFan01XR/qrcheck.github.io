@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mantenimiento</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<style>
+  :root{                         /* tema claro */
+    --bg:#f6f8fb;
+    --text:#333;
+    --primary:#156512;
+  }
+  :root.dark{                    /* tema oscuro */
+    --bg:#1b1b1b;
+    --text:#e5e5e5;
+    --primary:#34c36d;
+  }
+  body{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:100vh;padding:1rem;text-align:center;
+    background:var(--bg);color:var(--text);
+    font-family:'Segoe UI',sans-serif;
+    transition:background .3s,color .3s;
+  }
+  /* engrane giratorio */
+  .gear{font-size:6rem;color:var(--primary);animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* encabezado animado */
+  .type-box{
+    font-size:2rem;font-weight:600;line-height:1.3;
+    white-space:nowrap;overflow:hidden;
+    border-right:3px solid var(--primary);
+    padding-right:.35rem;          /* evita cortar la última letra */
+    min-height:3.8rem;
+    animation:blink .9s steps(1) infinite;
+    margin:1.2rem 0 1rem;
+  }
+  @keyframes blink{50%{border-color:transparent}}
+
+  /* mensaje fijo */
+  #m-msg{max-width:480px;font-size:1.2rem;margin-bottom:.8rem}
+
+  /* hora fin */
+  #m-end{font-weight:600;margin-bottom:.6rem}
+
+  /* lista de tareas */
+  #m-tasks{
+    white-space:pre-line;text-align:left;
+    border-left:4px solid var(--primary);
+    padding-left:1rem;margin-top:.8rem;font-size:1rem;max-width:480px;
+  }
+
+  /* botón logout */
+  button{
+    background:var(--primary);color:#fff;border:none;font-weight:600;
+    padding:.75rem 1.7rem;border-radius:.6rem;cursor:pointer;margin-top:1.5rem;
+    transition:filter .15s;
+  }
+  button:hover{filter:brightness(1.1)}
+</style>
+</head>
+<body>
+
+<i class="fas fa-cog gear"></i>
+
+<!-- texto animado -->
+<h2 id="type-msg" class="type-box"></h2>
+
+<!-- mensaje / hora / tareas configurables -->
+<p id="m-msg"></p>
+<p id="m-end"></p>
+<div id="m-tasks"></div>
+
+<button id="btn-logout">Cerrar sesión</button>
+
+<script>
+/* ╭─ preferencias (tema & aviso) ─────────────────────────── */
+const cfg = JSON.parse(localStorage.qr_config || '{}');
+if (cfg.dark) document.documentElement.classList.add('dark');
+
+/* ╭─ frases animadas (sin emojis) ────────────────────────── */
+const phrases=[
+  'Estamos trabajando…',
+  'Actualizando el sistema ',
+  'Optimizando rendimiento ',
+  'Revisando módulos de seguridad ',
+  'Sincronizando datos ',
+  'Realizando tareas de mejora ',
+  '¡Volveremos en breve! '
+];
+let ip=0, ic=0, typing=true;
+const typeBox=document.getElementById('type-msg');
+
+function loop(){
+  const txt=phrases[ip];
+  if(typing){
+    ic++;
+    if(ic===txt.length){typing=false;setTimeout(loop,1200);return;}
+  }else{
+    ic--;
+    if(ic===0){typing=true;ip=(ip+1)%phrases.length;}
+  }
+  typeBox.textContent=txt.slice(0,ic);
+  setTimeout(loop,typing?90:45);
+}
+loop();
+
+/* ╭─ mensaje, hora estimada y tareas ─────────────────────── */
+document.getElementById('m-msg').textContent = cfg.maintMessage || '';
+document.getElementById('m-end').textContent =
+  cfg.maintEnd ? 'Fin estimado: ' + new Date(cfg.maintEnd).toLocaleString() : '';
+document.getElementById('m-tasks').textContent = cfg.maintTasks || '';
+
+/* ╭─ cerrar sesión ───────────────────────────────────────── */
+document.getElementById('btn-logout').onclick = () => {
+  sessionStorage.clear();
+  location.replace('index.html');
+};
+</script>
+</body>
+</html>

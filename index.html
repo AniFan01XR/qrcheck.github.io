@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Login · Asistencia QR</title>
-    <!-- favicon básico -->
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login · Asistencia QR</title>
 
-<!-- (opcional) versión PNG para navegadores modernos -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <!-- favicons -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="login.css">
+  <!-- estilos -->
+  <link rel="stylesheet" href="login.css" />
+
+  <!-- sonido global (opcional) -->
+  <script src="js/click-sound.js" defer></script>
+
+  <!-- inserta usuarios por defecto la 1ª vez -->
+  <script src="js/seed-users.js"></script>
+
+  <!-- lógica de login -->
+  <script type="module" src="js/login.js" defer></script>
 </head>
-<script src="click-sound.js" defer></script>
 
 <body>
   <div class="login-wrapper">
     <div class="login-container">
-      <img src="assets/logo.png" alt="Logo" class="login-logo">
-      <form id="login-form">
-        <input type="text"     id="login-user" placeholder="Usuario" required>
-        <input type="password" id="login-pass" placeholder="Contraseña" required>
-        <button type="submit">Entrar</button>
+      <img src="assets/logo.png" alt="Logo" class="login-logo" />
+
+      <form id="loginForm">
+        <input id="u" placeholder="Usuario"    required />
+        <input id="p" type="password" placeholder="Contraseña" required />
+        <button>Entrar</button>
       </form>
+
       <div class="links">
         <a href="#" id="forgot-user-link">Olvidé usuario</a>
         <a href="#" id="forgot-pass-link">Olvidé contraseña</a>
       </div>
-      <p id="login-error" class="login-error"></p>
+
+      <p id="msg" class="login-error"></p>
     </div>
   </div>
-  <script src="login.js" defer></script>
 </body>
 </html>
