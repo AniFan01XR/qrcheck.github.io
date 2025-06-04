@@ -15,7 +15,7 @@ html, body {
 
 /* FONDO */
 body {
-  background: url('assets/loging.png') no-repeat center/cover;
+  background: url('assets/login.png') no-repeat center/cover;
 }
 
 /* OVERLAY SEMITRANSPARENTE */
